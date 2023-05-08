@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+
+<head>
+  <meta charset="utf-8">
+  <title>Drum Kit</title>
+  <link rel="stylesheet" href="styles.css">
+  <link href="https://fonts.googleapis.com/css?family=Arvo" rel="stylesheet">
+
+  <script src="index.js"></script>
+</head>
+
+<body>
+
+  <h1 id="title">Drum 🥁 Kit</h1>
+  <div class="set">
+    <button class="w drum">w</button>
+    <button class="a drum">a</button>
+    <button class="s drum">s</button>
+    <button class="d drum">d</button>
+    <button class="j drum">j</button>
+    <button class="k drum">k</button>
+    <button class="l drum">l</button>
+  </div>
+
+
+  <footer>
+    Create By:- Syed Zulkharnain
+  </footer>
+
+  <script>
+
+    var buttonlength = document.querySelectorAll(".drum").length;
+
+      for (let i = 0; i < buttonlength; i++) {
+        
+        document.querySelectorAll(".drum")[i].addEventListener("click", function handleclick() {
+          var buttoninnerHTML = this.innerHTML;
+
+          makesound(buttoninnerHTML);
+          ButtonAnimation(buttoninnerHTML);
+         
+        });
+      }
+
+      //detecting keyword pressed
+      document.addEventListener("keypress", function keypress(key) {
+        makesound(key.key)
+        ButtonAnimation(key.key)
+      });
+
+
+      function makesound(key) {
+        switch (key) {
+            
+            case "w":
+              var tom_1 = new Audio("sounds/tom-1.mp3");
+              tom_1.play();
+              break;
+
+            case "a":
+              var tom_2 = new Audio("sounds/tom-2.mp3");
+              tom_2.play(); 
+              break;
+
+            case "s":
+              var tom_3 = new Audio("sounds/tom-3.mp3");
+              tom_3.play();
+              break;
+          
+            case "d":
+              var tom_4 = new Audio("sounds/tom-4.mp3");
+              tom_4.play();
+              break;
+
+            case "j":
+              var tom_5 = new Audio("sounds/snare.mp3");
+              tom_5.play();
+              break;
+
+            case "k":
+              var tom_5 = new Audio("sounds/crash.mp3");
+              tom_5.play();
+              break;
+
+            case "l":
+              var tom_3 = new Audio("sounds/kick-bass.mp3");
+              tom_3.play();
+              break;
+              
+            default:
+              console.log("Something went wrong");
+              break;
+          }
+      }
+
+      function ButtonAnimation(CurrentKey) {
+        var activebutton = document.querySelector("."+ CurrentKey);
+        activebutton.classList.add("pressed");
+
+        setTimeout(function () {
+          activebutton.classList.remove("pressed")
+        }, 100)
+      }
+  </script>
+</body>
+
+</html>
